@@ -1,0 +1,135 @@
+kutu0 : 8 8
+kutu1 : 158 8
+kutu2 : 308 8
+kutu3 : 8 158
+kutu4 : 158 158
+kutu5 : 308 158
+kutu6 : 8 308
+kutu7 : 158 308
+kutu8 : 308 308
+
+
+
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#puzzle{
+			width: 450px;
+			height: 450px;
+		}
+		.kutu0{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu1{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu2{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu3{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu4{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu5{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu6{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu7{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu8{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		img{
+			width: 150px;
+			height: 150px;
+		}
+	</style>
+</head>
+<body>
+	<section id="puzzle">
+		<div ><img class="kutu0" src="img/foto0.png"></div>
+		<div ><img class="kutu1" src="img/foto1.png"></div>
+		<div ><img class="kutu2" src="img/foto2.png"></div>
+		<div ><img class="kutu3" src="img/foto3.png"></div>
+		<div ><img class="kutu4" src="img/foto4.png"></div>
+		<div ><img class="kutu5" src="img/foto5.png"></div>
+		<div ><img class="kutu6" src="img/foto6.png"></div>
+		<div ><img class="kutu7" src="img/foto7.png"></div>
+		<div ><img class="kutu8" src="img/foto8.png"></div>
+	</section>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var sayi
+		var sayac=0;
+		var dizi=[];
+		while(sayac<9){
+			sayi=Math.floor(Math.random()*9)
+			if (dizi.indexOf(sayi)==-1) {
+				dizi.push(sayi);
+				sayac++;
+			}
+		}
+		for(var i=0;i<=9;i++){
+			$(".kutu"+(i)+"").attr("src","img/foto"+dizi[i]+".png");
+		}
+		
+		var islem=0;
+		var top1;
+		var left1;
+		var index;
+		var index2;
+		$("div").click(function(){
+			islem++;
+			if (islem==1) {
+				index=$(this).index();
+				left1=$(".kutu"+index+"").offset().left;
+				top1=$(".kutu"+index+"").offset().top;
+				
+			}
+			if (islem==2) {
+				index2=$(this).index();
+				$(".kutu"+index+"").offset({
+					left:$(".kutu"+index2+"").offset().left,
+					top:$(".kutu"+index2+"").offset().top
+				});
+				$(".kutu"+index2+"").offset({
+					left:left1,
+					top:top1
+				});
+				
+				islem=0;
+			};
+		});
+	});
+
+</script>
+</body>
+</html>

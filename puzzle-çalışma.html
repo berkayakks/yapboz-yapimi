@@ -1,0 +1,143 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#puzzle{
+			width: 450px;
+			height: 450px;
+		}
+		.kutu0{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu1{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu2{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu3{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu4{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu5{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu6{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu7{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		.kutu8{
+			float: left;
+			width: 150px;
+			height: 150px;
+		}
+		img{
+			width: 150px;
+			height: 150px;
+			
+		}
+		p{
+			font-size: 25px;
+
+		}
+	</style>
+</head>
+<body>
+	<section id="puzzle">
+		<div ><img class="kutu0" src="img/foto0.png"></div>
+		<div ><img class="kutu1" src="img/foto1.png"></div>
+		<div ><img class="kutu2" src="img/foto2.png"></div>
+		<div ><img class="kutu3" src="img/foto3.png"></div>
+		<div ><img class="kutu4" src="img/foto4.png"></div>
+		<div ><img class="kutu5" src="img/foto5.png"></div>
+		<div ><img class="kutu6" src="img/foto6.png"></div>
+		<div ><img class="kutu7" src="img/foto7.png"></div>
+		<div ><img class="kutu8" src="img/foto8.png"></div>
+	</section>
+	<p>iyi eğlenceler</p>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var sayi
+		var sayac=0;
+		var dizi=[];
+		while(sayac<9){
+			sayi=Math.floor(Math.random()*9)
+			if (dizi.indexOf(sayi)==-1) {
+				dizi.push(sayi);
+				sayac++;
+			}
+		}
+		for(var i=0;i<=9;i++){
+			$(".kutu"+(i)+"").attr("src","img/foto"+dizi[i]+".png");// burada rasgele üretilenleri divlere atıyorum 
+			//o yüzden kutular yerinde kalıyo yani kutu0 kutu1 o yüzden sorgulatamadım. O zaman hacı illada html e bir şeyler editleyip yakalaman lazımsa şunu yap.
+			
+		}
+		
+		var islem=0;
+		var top1;
+		var left1;
+		var index;
+		var index2;
+		$("div").click(function(){
+			islem++;
+			if (islem==1) {
+				index=$(this).index();
+				left1=$(".kutu"+index+"").offset().left;
+				top1=$(".kutu"+index+"").offset().top;
+				
+			}
+			if (islem==2) {
+				index2=$(this).index();
+				$(".kutu"+index+"").offset({
+					left:$(".kutu"+index2+"").offset().left,
+					top:$(".kutu"+index2+"").offset().top
+				});
+				$(".kutu"+index2+"").offset({
+					left:left1,
+					top:top1
+				});
+					if ($("img[src='img/foto0.png']").offset().left==8&&$("img[src='img/foto0.png']").offset().top==8&&
+						$("img[src='img/foto1.png']").offset().left==158&&$("img[src='img/foto1.png']").offset().top==8&&
+						$("img[src='img/foto2.png']").offset().left==308&&$("img[src='img/foto2.png']").offset().top==8&&
+						$("img[src='img/foto3.png']").offset().left==8&&$("img[src='img/foto3.png']").offset().top==158&&
+						$("img[src='img/foto4.png']").offset().left==158&&$("img[src='img/foto4.png']").offset().top==158&&
+						$("img[src='img/foto5.png']").offset().left==308&&$("img[src='img/foto5.png']").offset().top==158&&
+						$("img[src='img/foto6.png']").offset().left==8&&$("img[src='img/foto6.png']").offset().top==308&&
+						$("img[src='img/foto7.png']").offset().left==158&&$("img[src='img/foto7.png']").offset().top==308&&
+						$("img[src='img/foto8.png']").offset().left==308&&$("img[src='img/foto8.png']").offset().top==308) {
+					$("p").text("tebrikler");
+					
+				}
+				islem=0;
+				
+			};
+		});
+	});
+
+</script>
+</body>
+</html>
